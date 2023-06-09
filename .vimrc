@@ -18,3 +18,9 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 " Тема
 colorscheme industry
 
+" Отступы: разработка
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set smartindent
