@@ -11,3 +11,5 @@ map L $
 map Р ^
 map Д $
 
+" Файлы подкачки - сохранение в отдельной папке
+set directory^=$HOME/.vim/swap//
