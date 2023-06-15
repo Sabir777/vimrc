@@ -24,3 +24,6 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set smartindent
+
+" Файлы подкачки - сохранение в отдельной папке
+set directory^=$HOME/.vim/swap//
