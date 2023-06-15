@@ -9,14 +9,12 @@ imap jj <Esc>
 imap оо <Esc>
 
 " Переход в начало и в конец строки Shift+h и Shift+l
-nmap H ^
-nmap L $
+map H ^
+map L $
+map Р ^
+map Д $
 
-vmap H ^
-vmap L $
-vmap Р ^
-vmap Д $
-
+" Русская раскладка
 map ё `
 map й q
 map ц w
@@ -68,10 +66,8 @@ map Ы S
 map В D
 map А F
 map П G
-map Р H
 map О J
 map Л K
-map Д L
 map Ж :
 map Э "
 map Я Z
