@@ -27,3 +27,7 @@ set smartindent
 
 " Файлы подкачки - сохранение в отдельной папке
 set directory^=$HOME/.vim/swap//
+
+" Номера строк: показывать по умолчанию
+set number
+
