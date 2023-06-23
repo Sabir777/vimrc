@@ -16,3 +16,8 @@ set directory^=$HOME/.vim/swap//
 
 " Добавил номера строк
 set number
+
+" Копирование во внешний буфер-файл в визуальном режиме (копирование между
+" вкладками tmux)
+map <C-c> :w ~/.vimbuffer<CR>
+map <C-p> :r ~/.vimbuffer<CR>
