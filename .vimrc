@@ -38,3 +38,8 @@ map <C-p> :r ~/.vimbuffer<CR>
 " Навигация по вкладкам
 nmap <F7> :tabp<CR>
 nmap <F8> :tabn<CR>
+
+" Потеря фокуса: не знаю что это надеюсь поможет сохранить вкладки при перезагрузке системы
+autocmd BufLeave,FocusLost,VimResized * silent! wall
+
+
