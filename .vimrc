@@ -1,3 +1,18 @@
+" ПЛАГИНЫ
+" Установка vim-plug при первом старте vim
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin()
+" Автообновление файлов
+" Plug 'djoshea/vim-autoread'
+" Plug 'chrisbra/vim-autoread'
+call plug#end()
+
+" Разрешить обновление файла
+set autoread
+
 " Переход в нормальный режим
 imap jj <Esc>
 imap оо <Esc>
@@ -40,6 +55,10 @@ nmap <F7> :tabp<CR>
 nmap <F8> :tabn<CR>
 
 " Потеря фокуса: не знаю что это надеюсь поможет сохранить вкладки при перезагрузке системы
-autocmd BufLeave,FocusLost,VimResized * silent! wall
+" autocmd BufLeave,FocusLost,VimResized * silent! wall
 
+" Автообновление вкладок и буферов
+"set autoread
+"au FocusGained,BufEnter * :checktime
+" au CursorHold * checktime
 
