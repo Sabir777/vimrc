@@ -29,11 +29,11 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 " Установка UTF-8 стандартной кодировкой для файлов
 set encoding=utf8
 
-" Мап-лидер: пробел
+" Мап-лидер: пробел: пока нигде не применяется
 let mapleader = ' '
 
 " Копировать выделенный фрагмент в глобальный буфер обмена
-noremap <leader>y :w !xclip -i -sel c<CR><CR>
+vnoremap <leader>y :w !xclip -i -sel c<CR><CR>
 
 " Копировать от текущего символа до конца строки
 nnoremap Y y$
