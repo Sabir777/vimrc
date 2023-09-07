@@ -42,18 +42,18 @@ vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
 "map <C-p> :r ~/.vimbuffer<CR>
 
 " Копировать от текущего символа до конца строки
-nnoremap Y y$
+nnoremap Y v$hy
 
 " Открыть терминал - выход из такого терминала команда: exit, при этом основное окно vim не закроется
 nnoremap <C-q> :terminal<CR>
 
 " Переход в нормальный режим
-imap jj <Esc>
-imap оо <Esc>
+inoremap jj <Esc>
+inoremap оо <Esc>
 
 " Переход по логическим строкам, а не по фактическим
-map j gj
-map k gk
+noremap j gj
+noremap k gk
 
 " Переход в начало и конец строки
 map H ^
@@ -68,8 +68,8 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 colorscheme industry
 
 " Отступы: разработка
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 set expandtab
 set smartindent
@@ -103,4 +103,13 @@ inoremap <C-z> <Esc>:undo<CR>
 nnoremap <C-x> :redo<CR>
 vnoremap <C-x> <Esc>:redo<CR>
 inoremap <C-x> <Esc>:redo<CR>
+
+" Регулярные выражения: поиск, замены, global
+nnoremap / /\v
+vnoremap / /\v
+" умный поиск. Если вы ищете строку, которая состоит только из прописных букв, то поиск будет регистро-независимым, но если один или больше символов в строке заглавные, то искать будет с учетом регистра. Чаще всего это то, что нужно
+set ignorecase
+set smartcase
+" применяет замены к строкам"
+set gdefault
 
