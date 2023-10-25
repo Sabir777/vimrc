@@ -110,6 +110,9 @@ inoremap <C-x> <Esc>:redo<CR>
 set ignorecase
 set smartcase
 
+"мгновенная подсветка
+set incsearch
+
 "включить/отключить подсветку для всех найденных совпадений
 nnoremap <leader>h :set hlsearch!<CR>
 
