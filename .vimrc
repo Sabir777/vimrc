@@ -4,7 +4,21 @@ set nocompatible
 " для работы плагинов NERDTree, NERDCommenter, lightline - если я их установлю
 " вручную
 filetype plugin indent on
+
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+call plug#end()
  
+" Мап-лидер
+let mapleader = ' '
+
+"Комбинации для плагинов
+
+"-------------------------NERDTree---------------------------"
+" открыть/закрыть панель NERDTree
+nnoremap <leader>p :NERDTreeToggle<CR>
+
 " курсор и мышь
 " полностью включить мышь - при выделении мышью будет переходить в режим
 " Visual
@@ -29,8 +43,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 " Установка UTF-8 стандартной кодировкой для файлов
 set encoding=utf8
 
-" Мап-лидер: пробел: пока нигде не применяется
-let mapleader = ' '
 
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + v
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
