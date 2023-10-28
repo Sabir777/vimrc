@@ -8,16 +8,34 @@ filetype plugin indent on
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
  
 " Мап-лидер
-let mapleader = ' '
+let mapleader = '\'
+" Увеличиваю время ожидания для mapleader до 1500 мс вместо 1000 мс
+set timeout timeoutlen=1500
 
 "Комбинации для плагинов
 
 "-------------------------NERDTree---------------------------"
 " открыть/закрыть панель NERDTree
 nnoremap <leader>p :NERDTreeToggle<CR>
+
+"----------------------NERDCommenter-------------------------"
+
+" Пробелы будут устанавливаться перед комментариями
+let g:NERDSpaceDelims = 1
+
+" Пробелы будут удаляться вместе с комментариями
+let g:NERDRemoveExtraSpaces = 1
+
+" Устанавливаю тип комментариев
+let g:NERDCustomDelimiters = {
+    \ 'c': {'left': '//', 'right': ''},
+  \ 'javascript': {'left': '//', 'right': ''},
+  \ 'python': {'left': '#', 'right': ''},
+  \ }
 
 " курсор и мышь
 " полностью включить мышь - при выделении мышью будет переходить в режим
@@ -44,7 +62,7 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 set encoding=utf8
 
 
-" Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + v
+" Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
 
 " Вставить текст из глобального буфера обмена: Правая кнопка мыши
@@ -60,8 +78,9 @@ nnoremap Y y$
 nnoremap <C-q> :terminal<CR>
 
 " Переход в нормальный режим
-inoremap jj <Esc>
-inoremap оо <Esc>
+"inoremap <leader>j <Esc>
+"inoremap оо <Esc>
+"Назначил Esc на CapsLock
 
 " Переход по логическим строкам, а не по фактическим
 noremap j gj
