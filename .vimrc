@@ -9,6 +9,7 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
+Plug 'vim-airline/vim-airline'
 call plug#end()
  
 " Мап-лидер
