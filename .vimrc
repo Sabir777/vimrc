@@ -79,11 +79,6 @@ nnoremap Y y$
 " Открыть терминал - выход из такого терминала команда: exit, при этом основное окно vim не закроется
 nnoremap <C-q> :terminal<CR>
 
-" Переход в нормальный режим
-"inoremap <leader>j <Esc>
-"inoremap оо <Esc>
-"Назначил Esc на CapsLock
-
 " Переход по логическим строкам, а не по фактическим
 noremap j gj
 noremap k gk
@@ -114,8 +109,12 @@ set directory^=$HOME/.vim/swap//
 set number
 
 " Навигация по вкладкам
-nmap <F7> :tabp<CR>
-nmap <F8> :tabn<CR>
+nnoremap <F7> :tabp<CR>
+nnoremap <F8> :tabn<CR>
+
+" Навигация по буферам
+nnoremap <F5> :bprev<CR>
+nnoremap <F6> :bnext<CR>
 
 "-----------------------------Поиск---------------------------------"
 " умный поиск. Если вы ищете строку, которая состоит только из прописных букв,
@@ -146,8 +145,10 @@ set hidden
 
 
 "-------------------------------Тэги---------------------------------"
-nnoremap <leader><F5> :!ctags -R<CR>
+" обновить файл tags
+nnoremap <leader>t :!ctags -R<CR>
 
 "--------------------------Обновить .vimrc---------------------------"
+" сохранить .vimrc и применить новые настройки для всех открытых буферов
 nnoremap <leader><F6> :w<CR>:source $MYVIMRC<CR>
 
