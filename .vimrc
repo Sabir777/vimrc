@@ -144,3 +144,10 @@ nnoremap / :set hlsearch<CR>:noh<CR>/\v
 " разрешить групповую обработку файлов через vim
 set hidden
 
+
+"-------------------------------Тэги---------------------------------"
+nnoremap <leader><F5> :!ctags -R<CR>
+
+"--------------------------Обновить .vimrc---------------------------"
+nnoremap <leader><F6> :w<CR>:source $MYVIMRC<CR>
+
