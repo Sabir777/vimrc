@@ -128,7 +128,12 @@ nnoremap <leader><F7> :bprev<CR>
 nnoremap <leader><F8> :bnext<CR>
 
 " Навигация по окнам
-nnoremap <F6> <C-w>w
+nnoremap <F1> <C-w>w
+
+" Навигация по тэгам
+nnoremap <F5> :tprev<CR>
+nnoremap <F6> :tnext<CR>
+"nnoremap <leader><F6> :w<CR>:source $MYVIMRC<CR> <---работает
 
 "-----------------------------Поиск---------------------------------"
 " умный поиск. Если вы ищете строку, которая состоит только из прописных букв,
