@@ -7,6 +7,7 @@ filetype plugin indent on
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
+Plug 'philrunninger/nerdtree-visual-selection'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
@@ -123,8 +124,11 @@ nnoremap <F7> :tabp<CR>
 nnoremap <F8> :tabn<CR>
 
 " Навигация по буферам
-nnoremap <F5> :bprev<CR>
-nnoremap <F6> :bnext<CR>
+nnoremap <leader><F7> :bprev<CR>
+nnoremap <leader><F8> :bnext<CR>
+
+" Навигация по окнам
+nnoremap <F6> <C-w>w
 
 "-----------------------------Поиск---------------------------------"
 " умный поиск. Если вы ищете строку, которая состоит только из прописных букв,
