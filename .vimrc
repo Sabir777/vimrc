@@ -124,16 +124,15 @@ nnoremap <F7> :tabp<CR>
 nnoremap <F8> :tabn<CR>
 
 " Навигация по буферам
-nnoremap <leader><F7> :bprev<CR>
-nnoremap <leader><F8> :bnext<CR>
+nnoremap <F5> :bprev<CR>
+nnoremap <F6> :bnext<CR>
 
 " Навигация по окнам
-nnoremap <F1> <C-w>w
+nnoremap <F9> <C-w>w
 
 " Навигация по тэгам
-nnoremap <F5> :tprev<CR>
-nnoremap <F6> :tnext<CR>
-"nnoremap <leader><F6> :w<CR>:source $MYVIMRC<CR> <---работает
+nnoremap <F10> :tprev<CR>
+nnoremap <F11> :tnext<CR>
 
 " Переход к первому определению слова(тэга). Дальнейшее перемещение: F5,F6
 nnoremap <F12> g<C-]>1<CR><CR>
@@ -172,5 +171,5 @@ nnoremap <leader>t :!ctags -R<CR>
 
 "--------------------------Обновить .vimrc---------------------------"
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
-nnoremap <leader><F6> :w<CR>:source $MYVIMRC<CR>
+nnoremap <leader><F7> :w<CR>:source $MYVIMRC<CR>
 
