@@ -173,3 +173,7 @@ nnoremap <leader>t :!ctags -R<CR>
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
 nnoremap <leader><F7> :w<CR>:source $MYVIMRC<CR>
 
+
+"--Всегда обновлять текущую директорию по последнему открытому файлу-"
+autocmd BufEnter * lcd %:p:h
+
