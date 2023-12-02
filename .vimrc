@@ -177,3 +177,6 @@ nnoremap <leader><F7> :w<CR>:source $MYVIMRC<CR>
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
 autocmd BufEnter * lcd %:p:h
 
+"-----------------Включить/отключить нумерацию строк-----------------"
+nnoremap <silent> <leader>n :set invnumber<CR>
+
