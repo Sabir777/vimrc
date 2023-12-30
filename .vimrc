@@ -203,3 +203,6 @@ nnoremap <C-h> <C-w>h<C-w>x
 " двигать панель вправо
 nnoremap <C-l> <C-w>x<C-w>l
 
+"------------Открыть все файлы в отдельных панелях (окнах)-----------"
+nnoremap <leader>b :bufdo vert sbnext<CR>:q<CR>
+
