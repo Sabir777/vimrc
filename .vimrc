@@ -86,6 +86,7 @@ vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
 
 " Копировать от текущего символа до конца строки
 nnoremap Y y$
+nnoremap Н y$
 
 " Открыть терминал - выход из такого терминала команда: exit, при этом основное окно vim не закроется
 nnoremap <C-q> :terminal<CR>
@@ -224,8 +225,13 @@ nnoremap <C-р> <C-w>h<C-w>x
 nnoremap <C-l> <C-w>x<C-w>l
 nnoremap <C-д> <C-w>x<C-w>l
 
-"------------Открыть все файлы в отдельных панелях (окнах)-----------"
+"-----------Открыть все буферы в отдельных панелях (окнах)-----------"
 nnoremap <leader>b :bufdo vert sbnext<CR>:q<CR>
+nnoremap <leader>и :bufdo vert sbnext<CR>:q<CR>
+
+"------------------------Закрыть панель(окно)------------------------"
+nnoremap <leader>q :q<CR>
+nnoremap <leader>й :q<CR>
 
 "----------------------------Quickfix list---------------------------"
 " переход к предыдущей записи
@@ -239,4 +245,13 @@ nnoremap <F1> :copen<CR>
 
 " закрыть список Quickfix list
 nnoremap <F2> :cclose<CR>
+
+"-----------------------------Сессии vim-----------------------------"
+" сохранить сессию
+nnoremap <leader>w :wall<CR>:mksession! save.ses<CR>
+nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
+
+" открыть сессию
+nnoremap <leader>r :source save.ses<CR>
+nnoremap <leader>к :source save.ses<CR>
 
