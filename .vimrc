@@ -96,10 +96,17 @@ noremap j gj
 noremap k gk
 
 " Переход в начало и конец строки
-map H ^
-map L $
-map Р ^
-map Д $
+nnoremap H ^
+vnoremap H ^
+
+nnoremap L $
+vnoremap L $
+
+nnoremap Р ^
+vnoremap Р ^
+
+nnoremap Д $
+vnoremap Д $
 
 " Русская раскладка
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
@@ -254,4 +261,11 @@ nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
 " открыть сессию
 nnoremap <leader>r :source save.ses<CR>
 nnoremap <leader>к :source save.ses<CR>
+
+"--------------------------Автодополнение----------------------------"
+" включить меню автодополнения, выбрать следующее слово
+inoremap <C-j> <C-n>
+
+" включить меню автодополнения, выбрать предыдущее слово
+inoremap <C-k> <C-p>
 
