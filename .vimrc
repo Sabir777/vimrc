@@ -65,6 +65,7 @@ let &t_SI.="\<Esc>[5 q" "SI = режим вставки (вертикальна�
 let &t_SR.="\<Esc>[3 q" "SR = режим замены (нижнее подчеркивание при замене символа)
 let &t_EI.="\<Esc>[2 q" "EI = нормальный режим (белый прямоугольник - включается если включить и выключить поиск '/'
 
+
 " прекратить подсвечивать строку при переходе в режим Insert
 autocmd InsertEnter,InsertLeave * set cursorline!
  
@@ -134,9 +135,6 @@ nnoremap <F8> :tabn<CR>
 " Навигация по буферам
 nnoremap <F5> :bprev<CR>
 nnoremap <F6> :bnext<CR>
-
-" Навигация по окнам
-nnoremap <F9> <C-w>w
 
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
@@ -268,4 +266,29 @@ inoremap <C-j> <C-n>
 
 " включить меню автодополнения, выбрать предыдущее слово
 inoremap <C-k> <C-p>
+
+
+"-----------------------------Кодировки------------------------------"
+
+" Выбор кодировки, в которой читать файл
+set wildmenu
+set wcm=<TAB>
+menu Encoding.koi8-r :e ++enc=koi8-r<CR>
+menu Encoding.windows-1251 :e ++enc=cp1251<CR>
+menu Encoding.ibm-866 :e ++enc=cp866<CR>
+menu Encoding.utf-8 :e ++enc=utf-8<CR>
+map <F9> :emenu Encoding.<TAB>
+
+" Выбор кодировки, в которой сохранять файл
+set wildmenu
+set wcm=<Tab>
+menu Encoding.Write.koi8-r :set fenc=koi8-r<CR>
+menu Encoding.Write.windows-1251 :set fenc=cp1251<CR>
+menu Encoding.Write.cp866 :set fenc=cp866<CR>
+menu Encoding.Write.utf-8 :set fenc=utf8<CR>
+map <leader><F9> :emenu Encoding.Write.<TAB>
+
+
+" Кодировка для открытия файла AHK
+autocmd BufReadPost *.ahk e ++enc=cp1251
 
