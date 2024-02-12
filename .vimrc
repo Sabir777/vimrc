@@ -159,6 +159,7 @@ nnoremap <leader>h :set hlsearch!<CR>
 
 "включать подсветку перед каждым поиском; :noh нужен для того чтобы не включать старую подсветку до того как введен запрос на поиск
 nnoremap / :set hlsearch<CR>:noh<CR>/\v
+nnoremap ? :set hlsearch<CR>:noh<CR>?\v
 
 
 "-----------------------------Замены---------------------------------"
@@ -287,8 +288,4 @@ menu Encoding.Write.windows-1251 :set fenc=cp1251<CR>
 menu Encoding.Write.cp866 :set fenc=cp866<CR>
 menu Encoding.Write.utf-8 :set fenc=utf8<CR>
 map <leader><F9> :emenu Encoding.Write.<TAB>
-
-
-" Кодировка для открытия файла AHK
-autocmd BufReadPost *.ahk e ++enc=cp1251
 
