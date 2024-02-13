@@ -289,3 +289,7 @@ menu Encoding.Write.cp866 :set fenc=cp866<CR>
 menu Encoding.Write.utf-8 :set fenc=utf8<CR>
 map <leader><F9> :emenu Encoding.Write.<TAB>
 
+"---------------------------Аббревиатуры----------------------------"
+cabbrev цй wq
+cabbrev ц q
+
