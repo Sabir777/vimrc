@@ -178,7 +178,7 @@ nnoremap <leader>t :!ctags -R<CR>
 
 "--------------------------Обновить .vimrc---------------------------"
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
-nnoremap <leader><F7> :w<CR>:source $MYVIMRC<CR>
+nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 
 
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
@@ -246,11 +246,30 @@ nnoremap <F3> :cprev<CR>
 " переход к следующей записи
 nnoremap <F4> :cnext<CR>
 
-" открыть список Quickfix list
-nnoremap <F1> :copen<CR>
 
-" закрыть список Quickfix list
-nnoremap <F2> :cclose<CR>
+"----------------Quickfix list: открыть, закрыть---------------------"
+
+" Определение переменной для хранения состояния переключателя
+let g:quickfix_toggle = 1
+
+" Создание пользовательской команды
+command! ToggleQuickfix call ToggleQuickfix()
+
+function! ToggleQuickfix()
+  if g:quickfix_toggle
+    " открыть список Quickfix list
+    copen
+    let g:quickfix_toggle = 0
+  else
+    " закрыть список Quickfix list
+    cclose
+    let g:quickfix_toggle = 1
+  endif
+endfunction
+
+" Открыть/закрыть Quickfix list
+nnoremap <F2> :ToggleQuickfix<CR>
+
 
 "-----------------------------Сессии vim-----------------------------"
 " сохранить сессию
@@ -292,4 +311,28 @@ map <leader><F9> :emenu Encoding.Write.<TAB>
 "---------------------------Аббревиатуры----------------------------"
 cabbrev цй wq
 cabbrev ц q
+
+
+"----------------------------Синтаксис-------------------------------"
+
+" Определение переменной для хранения состояния синтаксиса
+let g:syntax_toggle = 1
+
+" Создание пользовательской команды для переключения синтаксиса
+command! ToggleSyntax call ToggleSyntax()
+
+function! ToggleSyntax()
+  if g:syntax_toggle
+    " Отключение синтаксиса
+    syntax off
+    let g:syntax_toggle = 0
+  else
+    " Включение синтаксиса
+    syntax enable
+    let g:syntax_toggle = 1
+  endif
+endfunction
+
+" Назначение клавиши для вызова пользовательской команды
+nnoremap <leader>H :ToggleSyntax<CR>
 
