@@ -75,6 +75,8 @@ set updatetime=250
 set autoread
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 
+"--------------------------Сохраниться------------------------------"
+nnoremap <C-s> :w<CR>
 
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
@@ -310,7 +312,8 @@ map <leader><F9> :emenu Encoding.Write.<TAB>
 
 "---------------------------Аббревиатуры----------------------------"
 cabbrev цй wq
-cabbrev ц q
+cabbrev ц w
+cabbrev й q
 
 
 "----------------------------Синтаксис-------------------------------"
