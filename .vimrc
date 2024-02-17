@@ -182,6 +182,8 @@ nnoremap <leader>t :!ctags -R<CR>
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
 nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 
+"-------------------Открыть .vimrc для редактирования----------------"
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
 autocmd BufEnter * lcd %:p:h
@@ -314,7 +316,6 @@ map <leader><F9> :emenu Encoding.Write.<TAB>
 cabbrev цй wq
 cabbrev ц w
 cabbrev й q
-
 
 "----------------------------Синтаксис-------------------------------"
 
