@@ -67,13 +67,20 @@ let &t_EI.="\<Esc>[2 q" "EI = нормальный режим (белый пря
 
 
 " прекратить подсвечивать строку при переходе в режим Insert
-autocmd InsertEnter,InsertLeave * set cursorline!
+augroup group_insert  
+	autocmd!
+	autocmd InsertEnter,InsertLeave * set cursorline!
+augroup END
  
 " Обновление файла извне
 set updatetime=250
 " Разрешить обновление файла
 set autoread
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+
+augroup group_checktime  
+	autocmd!
+	autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+augroup END
 
 "--------------------------Сохраниться------------------------------"
 nnoremap <C-s> :w<CR>
@@ -186,7 +193,10 @@ nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
-autocmd BufEnter * lcd %:p:h
+augroup group_lcd  
+	autocmd!
+	autocmd BufEnter * lcd %:p:h
+augroup END
 
 "-----------Включить/отключить нумерацию строк: <leader>n------------"
 nnoremap <silent> <leader>n :set invnumber<CR>
