@@ -195,6 +195,9 @@ nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 "-------------------Открыть .vimrc для редактирования----------------"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
+"--------------------Выполнить текущий скрипт------------------------"
+nnoremap <leader>s :source %<CR>
+
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
 augroup group_lcd  
 	autocmd!
