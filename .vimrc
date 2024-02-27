@@ -196,7 +196,7 @@ nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
 "--------------------Выполнить текущий скрипт------------------------"
-nnoremap <leader>s :source %<CR>
+nnoremap <leader>s :w<CR>:source %<CR>
 
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
 augroup group_lcd  
