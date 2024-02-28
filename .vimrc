@@ -15,7 +15,7 @@ Plug 'vim-airline/vim-airline'
 call plug#end()
  
 " Мап-лидер
-let mapleader = '\'
+let mapleader = ','
 " Увеличиваю время ожидания для mapleader до 1500 мс вместо 1000 мс
 set timeout timeoutlen=1500
 
@@ -39,6 +39,20 @@ let g:NERDCustomDelimiters = {
   \ 'javascript': {'left': '//', 'right': ''},
   \ 'python': {'left': '#', 'right': ''},
   \ }
+
+"-----------------Nerdcommenter: русская раскладка-----------------"
+" mapleader = ','
+" Настраиваю работу плагина Nerdcommenter для русской раскладки (клавиши те же)
+
+" закомментировать строку или блок однострочными комментариями
+nnoremap бсс :execute "normal \<leader>cc>"<CR>
+
+" закомментировать блок многострочными комментариями
+nnoremap бсы :execute "normal \<leader>cs>"<CR>
+
+" раскомментировать строку или блок
+nnoremap бсг :execute "normal \<leader>cu>"<CR>
+
 
 " курсор и мышь
 " полностью включить мышь - при выделении мышью будет переходить в режим
@@ -198,6 +212,9 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 "--------------------Выполнить текущий скрипт------------------------"
 nnoremap <leader>s :w<CR>:source %<CR>
 
+" тоже самое для русской раскладки
+nnoremap бы :execute "normal \<leader>s"<CR>
+
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
 augroup group_lcd  
 	autocmd!
@@ -355,4 +372,5 @@ endfunction
 
 " Назначение клавиши для вызова пользовательской команды
 nnoremap <leader>H :ToggleSyntax<CR>
+
 
