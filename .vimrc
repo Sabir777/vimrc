@@ -374,3 +374,11 @@ endfunction
 nnoremap <leader>H :ToggleSyntax<CR>
 
 
+"-------------Запуск Python для текущего файла----------------------"
+function! RunPython()
+    write
+    execute "!python3 %"
+endfunction
+
+command! Py :call RunPython()
+cabbrev py Py
