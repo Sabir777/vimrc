@@ -208,6 +208,7 @@ nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 
 "-------------------Открыть .vimrc для редактирования----------------"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>ум :vsplit $MYVIMRC<CR>
 
 "--------------------Выполнить текущий скрипт------------------------"
 nnoremap <leader>s :w<CR>:source %<CR>
@@ -382,3 +383,5 @@ endfunction
 
 command! Py :call RunPython()
 cabbrev py Py
+cabbrev зн Py
+
