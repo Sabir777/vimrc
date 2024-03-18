@@ -15,7 +15,7 @@ Plug 'vim-airline/vim-airline'
 call plug#end()
  
 " Мап-лидер
-let mapleader = '\'
+let mapleader = ','
 " Увеличиваю время ожидания для mapleader до 1500 мс вместо 1000 мс
 set timeout timeoutlen=1500
 
@@ -39,6 +39,20 @@ let g:NERDCustomDelimiters = {
   \ 'javascript': {'left': '//', 'right': ''},
   \ 'python': {'left': '#', 'right': ''},
   \ }
+
+"-----------------Nerdcommenter: русская раскладка-----------------"
+" mapleader = ','
+" Настраиваю работу плагина Nerdcommenter для русской раскладки (клавиши те же)
+
+" закомментировать строку или блок однострочными комментариями
+nnoremap бсс :execute "normal \<leader>cc>"<CR>
+
+" закомментировать блок многострочными комментариями
+nnoremap бсы :execute "normal \<leader>cs>"<CR>
+
+" раскомментировать строку или блок
+nnoremap бсг :execute "normal \<leader>cu>"<CR>
+
 
 " курсор и мышь
 " полностью включить мышь - при выделении мышью будет переходить в режим
@@ -65,15 +79,28 @@ let &t_SI.="\<Esc>[5 q" "SI = режим вставки (вертикальна�
 let &t_SR.="\<Esc>[3 q" "SR = режим замены (нижнее подчеркивание при замене символа)
 let &t_EI.="\<Esc>[2 q" "EI = нормальный режим (белый прямоугольник - включается если включить и выключить поиск '/'
 
+
 " прекратить подсвечивать строку при переходе в режим Insert
-autocmd InsertEnter,InsertLeave * set cursorline!
+augroup group_insert  
+	autocmd!
+	autocmd InsertEnter,InsertLeave * set cursorline!
+augroup END
  
 " Обновление файла извне
 set updatetime=250
 " Разрешить обновление файла
 set autoread
-autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 
+augroup group_checktime  
+	autocmd!
+	autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
+augroup END
+
+"--------------------------Сохраниться------------------------------"
+nnoremap <C-s> :w<CR>
+
+"-------------------------Выделить все------------------------------"
+nnoremap <C-a> ggVG
 
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
@@ -135,9 +162,6 @@ nnoremap <F8> :tabn<CR>
 nnoremap <F5> :bprev<CR>
 nnoremap <F6> :bnext<CR>
 
-" Навигация по окнам
-nnoremap <F9> <C-w>w
-
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
 nnoremap <F11> :tnext<CR>
@@ -161,6 +185,7 @@ nnoremap <leader>h :set hlsearch!<CR>
 
 "включать подсветку перед каждым поиском; :noh нужен для того чтобы не включать старую подсветку до того как введен запрос на поиск
 nnoremap / :set hlsearch<CR>:noh<CR>/\v
+nnoremap ? :set hlsearch<CR>:noh<CR>?\v
 
 
 "-----------------------------Замены---------------------------------"
@@ -179,11 +204,23 @@ nnoremap <leader>t :!ctags -R<CR>
 
 "--------------------------Обновить .vimrc---------------------------"
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
-nnoremap <leader><F7> :w<CR>:source $MYVIMRC<CR>
+nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
 
+"-------------------Открыть .vimrc для редактирования----------------"
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>ум :vsplit $MYVIMRC<CR>
+
+"--------------------Выполнить текущий скрипт------------------------"
+nnoremap <leader>s :w<CR>:source %<CR>
+
+" тоже самое для русской раскладки
+nnoremap бы :execute "normal \<leader>s"<CR>
 
 "--Всегда обновлять текущую директорию по последнему открытому файлу-"
-autocmd BufEnter * lcd %:p:h
+augroup group_lcd  
+	autocmd!
+	autocmd BufEnter * lcd %:p:h
+augroup END
 
 "-----------Включить/отключить нумерацию строк: <leader>n------------"
 nnoremap <silent> <leader>n :set invnumber<CR>
@@ -247,11 +284,30 @@ nnoremap <F3> :cprev<CR>
 " переход к следующей записи
 nnoremap <F4> :cnext<CR>
 
-" открыть список Quickfix list
-nnoremap <F1> :copen<CR>
 
-" закрыть список Quickfix list
-nnoremap <F2> :cclose<CR>
+"----------------Quickfix list: открыть, закрыть---------------------"
+
+" Определение переменной для хранения состояния переключателя
+let g:quickfix_toggle = 1
+
+" Создание пользовательской команды
+command! ToggleQuickfix call ToggleQuickfix()
+
+function! ToggleQuickfix()
+  if g:quickfix_toggle
+    " открыть список Quickfix list
+    copen
+    let g:quickfix_toggle = 0
+  else
+    " закрыть список Quickfix list
+    cclose
+    let g:quickfix_toggle = 1
+  endif
+endfunction
+
+" Открыть/закрыть Quickfix list
+nnoremap <F2> :ToggleQuickfix<CR>
+
 
 "-----------------------------Сессии vim-----------------------------"
 " сохранить сессию
@@ -268,4 +324,64 @@ inoremap <C-j> <C-n>
 
 " включить меню автодополнения, выбрать предыдущее слово
 inoremap <C-k> <C-p>
+
+
+"-----------------------------Кодировки------------------------------"
+
+" Выбор кодировки, в которой читать файл
+set wildmenu
+set wcm=<TAB>
+menu Encoding.koi8-r :e ++enc=koi8-r<CR>
+menu Encoding.windows-1251 :e ++enc=cp1251<CR>
+menu Encoding.ibm-866 :e ++enc=cp866<CR>
+menu Encoding.utf-8 :e ++enc=utf-8<CR>
+map <F9> :emenu Encoding.<TAB>
+
+" Выбор кодировки, в которой сохранять файл
+set wildmenu
+set wcm=<Tab>
+menu Encoding.Write.koi8-r :set fenc=koi8-r<CR>
+menu Encoding.Write.windows-1251 :set fenc=cp1251<CR>
+menu Encoding.Write.cp866 :set fenc=cp866<CR>
+menu Encoding.Write.utf-8 :set fenc=utf8<CR>
+map <leader><F9> :emenu Encoding.Write.<TAB>
+
+"---------------------------Аббревиатуры----------------------------"
+cabbrev цй wq
+cabbrev ц w
+cabbrev й q
+
+"----------------------------Синтаксис-------------------------------"
+
+" Определение переменной для хранения состояния синтаксиса
+let g:syntax_toggle = 1
+
+" Создание пользовательской команды для переключения синтаксиса
+command! ToggleSyntax call ToggleSyntax()
+
+function! ToggleSyntax()
+  if g:syntax_toggle
+    " Отключение синтаксиса
+    syntax off
+    let g:syntax_toggle = 0
+  else
+    " Включение синтаксиса
+    syntax enable
+    let g:syntax_toggle = 1
+  endif
+endfunction
+
+" Назначение клавиши для вызова пользовательской команды
+nnoremap <leader>H :ToggleSyntax<CR>
+
+
+"-------------Запуск Python для текущего файла----------------------"
+function! RunPython()
+    write
+    execute "!python3 %"
+endfunction
+
+command! Py :call RunPython()
+cabbrev py Py
+cabbrev зн Py
 
