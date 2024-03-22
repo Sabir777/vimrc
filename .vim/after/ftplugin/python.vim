@@ -15,3 +15,15 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap < <><left>
 
+"-------------Запуск Python для текущего файла----------------------"
+function! RunPython()
+		write
+		execute "!python3 %"
+endfunction
+
+command! Py :call RunPython()
+cabbrev py Py
+cabbrev зн Py
+
+nnoremap <leader><Space> :Py<CR>
+
