@@ -102,8 +102,23 @@ nnoremap <C-s> :w<CR>
 "-------------------------Выделить все------------------------------"
 nnoremap <C-a> ggVG
 
+
+"-----------------------Глобальный буфер----------------------------"
+"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
+
+" Вставить текст из глобального буфера обмена
+function! PasteGlobal()
+  set paste
+  let clipboard_text = system('xclip -o -selection clipboard')
+  let clipboard_text = substitute(clipboard_text, '\r', '', 'g')
+  let @g = clipboard_text
+  normal! "gp
+  set nopaste
+endfunction
+
+nnoremap <leader>v :call PasteGlobal()<CR>
 
 " Вставить текст из глобального буфера обмена: Правая кнопка мыши
 
