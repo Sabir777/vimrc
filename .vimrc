@@ -163,6 +163,9 @@ set smarttab
 set expandtab
 set smartindent
 
+" Нормализовать отступы во всем документе
+nnoremap <leader>= :normal! ggVG=<CR>
+
 " Файлы подкачки - сохранение в отдельной папке
 set directory^=$HOME/.vim/swap//
 
