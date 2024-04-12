@@ -120,6 +120,20 @@ endfunction
 
 nnoremap <leader>v :call PasteGlobal()<CR>
 
+" Копировать из глобального буфера (визуальный режим)
+function! InsertClipboardGlobalVisual()
+  let clipboard_text = system('xclip -o -selection clipboard')
+  let [n1, n2] = sort([line("'<"), line("'>")])
+  execute n1
+  normal O
+  execute "normal! gv\"_d"
+  execute n1
+  put =clipboard_text
+  execute n1 . "delete"
+endfunction
+
+vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
+
 " Вставить текст из глобального буфера обмена: Правая кнопка мыши
 
 " Копирование во внешний буфер-файл в визуальном режиме (копирование между вкладками tmux)
