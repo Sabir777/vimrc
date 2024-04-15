@@ -123,6 +123,7 @@ nnoremap <leader>v :call PasteGlobal()<CR>
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
   let clipboard_text = system('xclip -o -selection clipboard')
+  let clipboard_text = substitute(clipboard_text, '\r', '', 'g')
   let [n1, n2] = sort([line("'<"), line("'>")])
   execute n1
   normal O
