@@ -119,6 +119,8 @@ function! PasteGlobal()
 endfunction
 
 nnoremap <leader>v :call PasteGlobal()<CR>
+" тоже самое: русская раскладка
+nnoremap бм :call PasteGlobal()<CR>
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
@@ -134,6 +136,8 @@ function! InsertClipboardGlobalVisual()
 endfunction
 
 vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
+" тоже самое: русская раскладка
+vnoremap бм :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
 
 " Вставить текст из глобального буфера обмена: Правая кнопка мыши
 
