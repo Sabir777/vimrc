@@ -173,6 +173,23 @@ nnoremap <leader>= :normal! ggVG=<CR>
 " Файлы подкачки - сохранение в отдельной папке
 set directory^=$HOME/.vim/swap//
 
+"-----------Удалить swap-файл текущего файла в папке .vim-----------"
+function! DeleteSwapFiles()
+" сохраняю изменения чтобы не потерять их вместе со swap-файлом
+  write
+  let swap_dir = expand("~/.vim/swap")
+  let current_file = expand("%:t")
+  let swap_files = split(glob(swap_dir . '/*'), '\n')
+  for file in swap_files
+    if file =~? '\v.*' . current_file . '\.sw.'
+      call delete(file)
+      echom "Deleted swap file: " . file
+    endif
+  endfor
+endfunction
+
+command! Swap call DeleteSwapFiles()
+
 " Номера строк: показывать по умолчанию
 set number
 
@@ -227,6 +244,9 @@ nnoremap <leader>t :!ctags -R<CR>
 "--------------------------Обновить .vimrc---------------------------"
 " сохранить .vimrc и применить новые настройки для всех открытых буферов
 nnoremap <F1> :w<CR>:source $MYVIMRC<CR>
+
+"----------------Перерисовать vim (полезно при сбоях)----------------"
+nnoremap <leader><F1> :redraw!<CR>
 
 "-------------------Открыть .vimrc для редактирования----------------"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
