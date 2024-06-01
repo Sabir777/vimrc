@@ -13,7 +13,7 @@ inoremap " ""<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-" inoremap < <><left>
+inoremap 2< <><left>
 
 "-----Компиляция и запуск программы------"
 function! RunCpp()

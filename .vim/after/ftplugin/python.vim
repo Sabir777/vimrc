@@ -7,13 +7,14 @@ set expandtab
 set smartindent
 
 "------------------Автозавершение парных символов--------------------"
-inoremap ` ``<left>
+" inoremap ` ``<left>
 inoremap ' ''<left>
 inoremap " ""<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap < <><left>
+inoremap 1{ {
+" inoremap < <><left>
 
 "-------------Запуск Python для текущего файла----------------------"
 function! RunPython()
