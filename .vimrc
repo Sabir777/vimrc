@@ -113,7 +113,7 @@ function! InsertClipboardGlobalNormal()
 endfunction
 
 " nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
-nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR><CR>
+nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
