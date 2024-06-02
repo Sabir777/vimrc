@@ -1,4 +1,3 @@
-
 "-----------------------------Отступы--------------------------------"
 set tabstop=4
 set shiftwidth=4
@@ -13,8 +12,6 @@ inoremap " ""<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap 1{ {
-" inoremap < <><left>
 
 "-------------Запуск Python для текущего файла----------------------"
 function! RunPython()

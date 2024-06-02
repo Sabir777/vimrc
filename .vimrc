@@ -106,9 +106,14 @@ nnoremap <C-a> ggVG
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
 
-" Копировать из глобального буфера
-nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
+" Копировать из глобального буфера (нормальный режим)
+function! InsertClipboardGlobalNormal()
+  let @g = system("termux-clipboard-get")
+  normal "gp
+endfunction
 
+" nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
+nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR><CR>
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
