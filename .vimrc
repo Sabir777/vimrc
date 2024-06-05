@@ -115,19 +115,14 @@ endfunction
 " nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
 nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
 
+
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
-  let clipboard_text = system("termux-clipboard-get")
-  let [n1, n2] = sort([line("'<"), line("'>")])
-  execute n1
-  normal O
-  execute "normal! gv\"_d"
-  execute n1
-  put =clipboard_text
-  execute n1 . "delete"
+  let @g = system("termux-clipboard-get")
+  normal gv"gp
 endfunction
 
-vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
+vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
 
 
 " Копирование во внешний буфер-файл в визуальном режиме (копирование между вкладками tmux)
