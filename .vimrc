@@ -108,7 +108,7 @@ nnoremap <C-a> ggVG
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
 
-" Вставить текст из глобального буфера обмена
+" Вставить текст из глобального буфера обмена (нормальный режим)
 function! PasteGlobal()
   set paste
   let clipboard_text = system('xclip -o -selection clipboard')
@@ -126,13 +126,8 @@ nnoremap бм :call PasteGlobal()<CR>
 function! InsertClipboardGlobalVisual()
   let clipboard_text = system('xclip -o -selection clipboard')
   let clipboard_text = substitute(clipboard_text, '\r', '', 'g')
-  let [n1, n2] = sort([line("'<"), line("'>")])
-  execute n1
-  normal O
-  execute "normal! gv\"_d"
-  execute n1
-  put =clipboard_text
-  execute n1 . "delete"
+  let @g = clipboard_text
+  normal! gv"gp
 endfunction
 
 vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
