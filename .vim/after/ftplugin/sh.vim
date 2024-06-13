@@ -10,7 +10,6 @@ inoremap < <><left>
 
 "-------------Запуск Bash для текущего файла----------------------"
 function! RunBash()
-  echom "Проверка Bash"
   write
   execute "!bash %"
 endfunction
