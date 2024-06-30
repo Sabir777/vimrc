@@ -24,6 +24,7 @@ set timeout timeoutlen=1500
 "-------------------------NERDTree---------------------------"
 " открыть/закрыть панель NERDTree
 nnoremap <leader>p :NERDTreeToggle<CR>
+nnoremap бз :NERDTreeToggle<CR>
 
 "----------------------NERDCommenter-------------------------"
 
