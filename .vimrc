@@ -417,3 +417,10 @@ endfunction
 nnoremap <leader>H :ToggleSyntax<CR>
 
 
+"----------------------------Метки-------------------------------"
+
+" Создать метку m
+nnoremap <leader>m mm
+
+" Перейти к метке m
+nnoremap <leader>, ``
