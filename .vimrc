@@ -5,53 +5,11 @@ set nocompatible
 " вручную
 filetype plugin indent on
 
-" call plug#begin()
-" Plug 'scrooloose/nerdtree'
-" Plug 'philrunninger/nerdtree-visual-selection'
-" Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-repeat'
-" Plug 'scrooloose/nerdcommenter'
-" Plug 'vim-airline/vim-airline'
-" call plug#end()
  
 " Мап-лидер
 let mapleader = ','
 " Увеличиваю время ожидания для mapleader до 1500 мс вместо 1000 мс
 set timeout timeoutlen=1500
-
-"Комбинации для плагинов
-
-"-------------------------NERDTree---------------------------"
-" открыть/закрыть панель NERDTree
-nnoremap <leader>p :NERDTreeToggle<CR>
-
-"----------------------NERDCommenter-------------------------"
-
-" Пробелы будут устанавливаться перед комментариями
-let g:NERDSpaceDelims = 1
-
-" Пробелы будут удаляться вместе с комментариями
-let g:NERDRemoveExtraSpaces = 1
-
-" Устанавливаю тип комментариев
-let g:NERDCustomDelimiters = {
-    \ 'c': {'left': '//', 'right': ''},
-  \ 'javascript': {'left': '//', 'right': ''},
-  \ 'python': {'left': '#', 'right': ''},
-  \ }
-
-"-----------------Nerdcommenter: русская раскладка-----------------"
-" mapleader = ','
-" Настраиваю работу плагина Nerdcommenter для русской раскладки (клавиши те же)
-
-" закомментировать строку или блок однострочными комментариями
-nnoremap бсс :execute "normal \<leader>cc>"<CR>
-
-" закомментировать блок многострочными комментариями
-nnoremap бсы :execute "normal \<leader>cs>"<CR>
-
-" раскомментировать строку или блок
-nnoremap бсг :execute "normal \<leader>cu>"<CR>
 
 
 " курсор и мышь
@@ -104,22 +62,14 @@ nnoremap <C-a> ggVG
 
 "-----------------------Глобальный буфер----------------------------"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
-vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
+vnoremap <C-c> "*y
 
 " Копировать из глобального буфера (нормальный режим)
-function! InsertClipboardGlobalNormal()
-  let @g = system("termux-clipboard-get")
-  normal "gp
-endfunction
-
-" nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
-nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
-
+nnoremap <leader>v "*p
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
-  let @g = system("termux-clipboard-get")
-  normal gv"gp
+  normal gv"*p
 endfunction
 
 vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
@@ -425,6 +375,6 @@ nnoremap <leader>m mm
 " Перейти к метке m
 nnoremap <leader>, ``
 
-"----------------------------Копировать в файл
+"----------------------Копировать в файл-------------------------"
 vnoremap <leader>gc :w! ~/.vimbuffer<CR>
 
