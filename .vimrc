@@ -62,10 +62,20 @@ nnoremap <C-a> ggVG
 
 "-----------------------Глобальный буфер----------------------------"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
-vnoremap <C-c> "*y
+function! CopyClipboardGlobalVisual()
+  normal gv"*y
+endfunction
+
+vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
+
 
 " Копировать из глобального буфера (нормальный режим)
-nnoremap <leader>v "*p
+function! InsertClipboardGlobalNormal()
+  normal "*p
+endfunction
+
+nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
+
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
@@ -298,7 +308,7 @@ function! ToggleQuickfix()
 endfunction
 
 " Открыть/закрыть Quickfix list
-nnoremap <F2> :ToggleQuickfix<CR>
+"nnoremap <F2> :ToggleQuickfix<CR>
 
 
 "-----------------------------Сессии vim-----------------------------"
