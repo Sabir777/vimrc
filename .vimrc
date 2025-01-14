@@ -171,7 +171,7 @@ set smartindent
 nnoremap <leader>= :normal! ggVG=<CR>
 
 " Файлы подкачки - сохранение в отдельной папке
-set directory^=$HOME/.vim/swap//
+set directory=$HOME/.vim/swap//
 
 "-----------Удалить swap-файл текущего файла в папке .vim-----------"
 function! DeleteSwapFiles()
