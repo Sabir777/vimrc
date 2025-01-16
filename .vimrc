@@ -11,9 +11,11 @@ Plug 'philrunninger/nerdtree-visual-selection'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 call plug#end()
- 
+
+
 " Мап-лидер
 let mapleader = ','
 " Увеличиваю время ожидания для mapleader до 1500 мс вместо 1000 мс
@@ -424,3 +426,5 @@ nnoremap <leader>m mm
 
 " Перейти к метке m
 nnoremap <leader>, ``
+
+
