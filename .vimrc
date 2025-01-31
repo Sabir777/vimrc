@@ -106,25 +106,24 @@ nnoremap <C-a> ggVG
 
 "-----------------------Глобальный буфер----------------------------"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
-vnoremap <C-c> :w !termux-clipboard-set<CR><CR>
+vnoremap <C-c> :w !ssh -p 8022 127.0.0.1 "termux-clipboard-set"<CR><CR>
 
 " Копировать из глобального буфера (нормальный режим)
 function! InsertClipboardGlobalNormal()
-  let @g = system("termux-clipboard-get")
+  let @g = system("ssh -p 8022 127.0.0.1 'termux-clipboard-get'")
   normal "gp
 endfunction
 
-" nnoremap <leader>v :r !termux-clipboard-get<CR><CR>
-nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
+nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR><CR>
 
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
-  let @g = system("termux-clipboard-get")
+  let @g = system("ssh -p 8022 127.0.0.1 'termux-clipboard-get'")
   normal gv"gp
 endfunction
 
-vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
+vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
 
 
 " Копирование во внешний буфер-файл в визуальном режиме (копирование между вкладками tmux)
@@ -173,7 +172,7 @@ set smartindent
 nnoremap <leader>= :normal! ggVG=<CR>
 
 " Файлы подкачки - сохранение в отдельной папке
-set directory=$HOME/.vim/swap//
+set directory=~/.vim/swap//
 
 "-----------Удалить swap-файл текущего файла в папке .vim-----------"
 function! DeleteSwapFiles()
