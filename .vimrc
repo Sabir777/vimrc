@@ -105,41 +105,30 @@ nnoremap <C-a> ggVG
 
 
 "-----------------------Глобальный буфер----------------------------"
-"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
-vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
+function! CopyClipboardGlobalVisual()
+  normal gv"*y
+endfunction                                                                                                                                    
 
-" Вставить текст из глобального буфера обмена (нормальный режим)
-function! PasteGlobal()
-  set paste
-  let clipboard_text = system('xclip -o -selection clipboard')
-  let clipboard_text = substitute(clipboard_text, '\r', '', 'g')
-  let @g = clipboard_text
-  normal! "gp
-  set nopaste
+vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
+
+
+" Копировать из глобального буфера (нормальный режим)
+function! InsertClipboardGlobalNormal()
+  normal "*p
 endfunction
 
-nnoremap <leader>v :call PasteGlobal()<CR>
-" тоже самое: русская раскладка
-nnoremap бм :call PasteGlobal()<CR>
+nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
+
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
-  let clipboard_text = system('xclip -o -selection clipboard')
-  let clipboard_text = substitute(clipboard_text, '\r', '', 'g')
-  let @g = clipboard_text
-  normal! gv"gp
+  normal gv"*p
 endfunction
 
-vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
-" тоже самое: русская раскладка
-vnoremap бм :<C-u>call InsertClipboardGlobalVisual()<CR><CR>
+vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
 
-" Вставить текст из глобального буфера обмена: Правая кнопка мыши
 
-" Копирование во внешний буфер-файл в визуальном режиме (копирование между вкладками tmux)
-"map <C-c> :w! ~/.vimbuffer<CR>
-"map <C-p> :r ~/.vimbuffer<CR>
 
 " Копировать от текущего символа до конца строки
 nnoremap Y y$
