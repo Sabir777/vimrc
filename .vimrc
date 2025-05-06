@@ -107,7 +107,7 @@ nnoremap <C-a> ggVG
 "-----------------------Глобальный буфер----------------------------"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 function! CopyClipboardGlobalVisual()
-  normal gv"*y
+  normal gv"+y
 endfunction                                                                                                                                    
 
 vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
@@ -115,7 +115,7 @@ vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
 
 " Копировать из глобального буфера (нормальный режим)
 function! InsertClipboardGlobalNormal()
-  normal "*p
+  normal "+p
 endfunction
 
 nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
@@ -123,11 +123,10 @@ nnoremap <leader>v :call InsertClipboardGlobalNormal()<CR>
 
 " Копировать из глобального буфера (визуальный режим)
 function! InsertClipboardGlobalVisual()
-  normal gv"*p
+  normal gv"+p
 endfunction
 
 vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
-
 
 
 " Копировать от текущего символа до конца строки
