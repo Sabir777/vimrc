@@ -372,13 +372,13 @@ nnoremap <F2> :ToggleQuickfix<CR>
 
 
 "-----------------------------Сессии vim-----------------------------"
-" сохранить сессию
-nnoremap <leader>w :wall<CR>:mksession! save.ses<CR>
-nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
+" " сохранить сессию
+" nnoremap <leader>w :wall<CR>:mksession! save.ses<CR>
+" nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
 
-" открыть сессию
-nnoremap <leader>r :source save.ses<CR>
-nnoremap <leader>к :source save.ses<CR>
+" " открыть сессию
+" nnoremap <leader>r :source save.ses<CR>
+" nnoremap <leader>к :source save.ses<CR>
 
 "--------------------------Автодополнение----------------------------"
 " включить меню автодополнения, выбрать следующее слово
