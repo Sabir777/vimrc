@@ -419,3 +419,10 @@ nnoremap <leader>m mm
 " Перейти к метке m
 nnoremap <leader>, ``
 
+
+"--Удалить две зведочки перед или после косой одинарной кавычки--"
+command! DelBold call DelBold()
+
+function! DelBold()
+  %s/\v(`\zs\*\*|\*\*\ze`)//g
+endfunction
