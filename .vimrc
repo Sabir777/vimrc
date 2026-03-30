@@ -441,3 +441,10 @@ endfunction
 " Назначение клавиши для вызова пользовательской команды
 nnoremap <leader>H :ToggleSyntax<CR>
 
+
+"--Удалить две зведочки перед или после косой одинарной кавычки--"
+command! DelBold call DelBold()
+
+function! DelBold()
+  %s/\v(`\zs\*\*|\*\*\ze`)//g
+endfunction
