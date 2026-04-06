@@ -442,9 +442,27 @@ endfunction
 nnoremap <leader>H :ToggleSyntax<CR>
 
 
-"--Удалить две зведочки перед или после косой одинарной кавычки--"
+
+"---------------------Пользовательские команды--------------------------"
+"
+"-----Удалить две зведочки перед или после косой одинарной кавычки------"
 command! DelBold call DelBold()
 
 function! DelBold()
   %s/\v(`\zs\*\*|\*\*\ze`)//g
 endfunction
+
+
+"-----------------Преобразовать таблицу Markdown в SQL----------------"
+command! -range MakeTableSql call MakeTableSql(<line1>, <line2>)
+
+function! MakeTableSql(line1, line2)
+  let @a = "0vt|xwi'\<Esc>f|bea'\<Esc>wwi'\<Esc>f|ba'\<Esc>"
+  for lnum in range(a:line1, a:line2)
+    execute lnum . 'normal @a'
+    execute lnum . 's/\v\s+\|\s+/, /g'
+    execute lnum . 's/\v^\|\s*/(/'
+    execute lnum . 's/\v\s+\|$/),/'
+  endfor
+endfunction
+
