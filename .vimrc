@@ -424,7 +424,7 @@ nnoremap <leader>, ``
 command! DelBold call DelBold()
 
 function! DelBold()
-  %s/\v(`\zs\*\*\ze\w|\w\zs\*\*\ze`)//g
+  %s/\v(`\zs\*\*\ze.|.\zs\*\*\ze`)//g
 endfunction
 
 
