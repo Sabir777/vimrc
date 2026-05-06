@@ -451,9 +451,10 @@ nnoremap <leader>H :ToggleSyntax<CR>
 command! DelBold call DelBold()
 
 function! DelBold()
-  %s/\v(`\zs\*\*\ze.|.\zs\*\*\ze`)//g
+  %s/\v`(.{-})`/\='`' . substitute(submatch(1), '\*\*', '', 'g') . '`'/g
   %s/\v\s+\n\s+(\*\*Структура и наполнение таблиц\*\*)/\*\*\*\r\#\#\#\#\# \1/
 endfunction
+
 
 "-----------------Преобразовать таблицу Markdown в SQL----------------"
 command! -range MakeTableSql call MakeTableSql(<line1>, <line2>)
