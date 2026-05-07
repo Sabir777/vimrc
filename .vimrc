@@ -457,15 +457,17 @@ endfunction
 
 
 "-----------------Преобразовать таблицу Markdown в SQL----------------"
-command! -range MakeTableSql call MakeTableSql(<line1>, <line2>)
+command! -range MakeTableSupply call MakeTableSupply(<line1>, <line2>)
 
-function! MakeTableSql(line1, line2)
-  let @a = "0vt|xwi'\<Esc>f|bea'\<Esc>wwi'\<Esc>f|ba'\<Esc>"
+function! MakeTableSupply(line1, line2)
+  let @a = "i'\<Esc>f|BEa'\<Esc>"
+  let @b = "0vt|xw@aww@a"
   for lnum in range(a:line1, a:line2)
-    execute lnum . 'normal @a'
-    execute lnum . 's/\v\s+\|\s+/, /g'
-    execute lnum . 's/\v^\|\s*/(/'
-    execute lnum . 's/\v\s+\|$/),/'
+    execute lnum . 's/\v(^\s*)@<!\|(\s*$)@!/ | /ge'
+    execute lnum . 'normal @b'
+    execute lnum . 's/\v^\|\s*/( /e'
+    execute lnum . 's/\v\s*\|\s*$/ ),/e'
+    execute lnum . 's/\v\s*\|\s*/, /ge'
   endfor
+  execute a:line2 . 's/\v,\s*$/;/e'
 endfunction
-
