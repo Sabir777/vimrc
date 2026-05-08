@@ -451,8 +451,8 @@ nnoremap <leader>H :ToggleSyntax<CR>
 command! DelBold call DelBold()
 
 function! DelBold()
-  %s/\v`(.{-})`/\='`' . substitute(submatch(1), '\*\*', '', 'g') . '`'/g
-  %s/\v\s+\n\s+(\*\*Структура и наполнение таблиц\*\*)/\*\*\*\r\#\#\#\#\# \1/
+  %s/\v`(.{-})`/\='`' . substitute(submatch(1), '\*\*', '', 'g') . '`'/ge
+  %s/\v\s+\n\s+(\*\*Структура и наполнение таблиц\*\*)/\*\*\*\r\#\#\#\#\# \1/e
 endfunction
 
 
