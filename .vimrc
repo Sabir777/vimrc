@@ -222,8 +222,11 @@ nnoremap <F7> :tabp<CR>
 nnoremap <F8> :tabn<CR>
 
 " Навигация по буферам
-nnoremap <F5> :bprev<CR>
-nnoremap <F6> :bnext<CR>
+nnoremap <leader>i :bprev<CR>
+nnoremap бш :bprev<CR>
+
+nnoremap <leader>o :bnext<CR>
+nnoremap бщ :bnext<CR>
 
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
