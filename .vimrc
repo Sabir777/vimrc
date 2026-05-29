@@ -460,17 +460,18 @@ function! DelBold()
 endfunction
 
 
-"-----------------Преобразовать таблицу Markdown в SQL----------------"
-command! -range MakeTableSupply call MakeTableSupply(<line1>, <line2>)
+"--Преобразовать таблицу Markdown в SQL--"
+command! -range MakeTableSql call MakeTableSql(<line1>, <line2>)
 
-function! MakeTableSupply(line1, line2)
-  let @a = "i'\<Esc>f|BEa'\<Esc>"
-  let @b = "0vt|xw@aww@a"
+function! MakeTableSql(line1, line2)
+  let @a = "0vt|xw"
   for lnum in range(a:line1, a:line2)
     execute lnum . 's/\v(^\s*)@<!\|(\s*$)@!/ | /ge'
-    execute lnum . 'normal @b'
-    execute lnum . 's/\v^\|\s*/( /e'
-    execute lnum . 's/\v\s*\|\s*$/ ),/e'
+    execute lnum . 'normal @a'
+    execute lnum . 's/\v\|\zs\s*(.{-})\s*\ze\|/''\1''/g'
+    execute lnum . 's/\v''(\d+|\d+\.\d+)''/\1/ge'
+    execute lnum . 's/\v^\|\s*/(/e'
+    execute lnum . 's/\v\s*\|\s*$/),/e'
     execute lnum . 's/\v\s*\|\s*/, /ge'
   endfor
   execute a:line2 . 's/\v,\s*$/;/e'
