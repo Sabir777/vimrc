@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
  
 " Мап-лидер
@@ -54,7 +55,11 @@ nnoremap бсы :execute "normal \<leader>cs>"<CR>
 " раскомментировать строку или блок
 nnoremap бсг :execute "normal \<leader>cu>"<CR>
 
+"-----------------------------jedi-vim-----------------------------"
+" Отключить показ сигнатур функций
+let g:jedi#show_call_signatures = "0"
 
+"------------------------------Разное------------------------------"
 " курсор и мышь
 " полностью включить мышь - при выделении мышью будет переходить в режим
 " Visual
@@ -100,15 +105,22 @@ augroup END
 "--------------------------Сохраниться------------------------------"
 nnoremap <C-s> :w<CR>
 
+
+"----------------Автосохранение при закрытии буфера-----------------"
+augroup auto_save
+	autocmd!
+	autocmd BufLeave * silent! :wa
+augroup END
+
 "-------------------------Выделить все------------------------------"
-nnoremap <C-a> ggVG
+nnoremap <leader>a ggVG
 
 
 "-----------------------Глобальный буфер----------------------------"
+"
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 function! CopyClipboardGlobalVisual()
   normal gv"+y
-endfunction                                                                                                                                    
 
 vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
 
@@ -127,7 +139,6 @@ function! InsertClipboardGlobalVisual()
 endfunction
 
 vnoremap <leader>v :<C-u>call InsertClipboardGlobalVisual()<CR>
-
 
 " Копировать от текущего символа до конца строки
 nnoremap Y y$
@@ -198,8 +209,11 @@ nnoremap <F7> :tabp<CR>
 nnoremap <F8> :tabn<CR>
 
 " Навигация по буферам
-nnoremap <F5> :bprev<CR>
-nnoremap <F6> :bnext<CR>
+nnoremap <leader>i :bprev<CR>
+nnoremap бш :bprev<CR>
+
+nnoremap <leader>o :bnext<CR>
+nnoremap бщ :bnext<CR>
 
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
@@ -352,13 +366,13 @@ nnoremap <F2> :ToggleQuickfix<CR>
 
 
 "-----------------------------Сессии vim-----------------------------"
-" сохранить сессию
-nnoremap <leader>w :wall<CR>:mksession! save.ses<CR>
-nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
+" " сохранить сессию
+" nnoremap <leader>w :wall<CR>:mksession! save.ses<CR>
+" nnoremap <leader>ц :wall<CR>:mksession! save.ses<CR>
 
-" открыть сессию
-nnoremap <leader>r :source save.ses<CR>
-nnoremap <leader>к :source save.ses<CR>
+" " открыть сессию
+" nnoremap <leader>r :source save.ses<CR>
+" nnoremap <leader>к :source save.ses<CR>
 
 "--------------------------Автодополнение----------------------------"
 " включить меню автодополнения, выбрать следующее слово
@@ -417,3 +431,35 @@ endfunction
 " Назначение клавиши для вызова пользовательской команды
 nnoremap <leader>H :ToggleSyntax<CR>
 
+
+
+"---------------------Пользовательские команды--------------------------"
+"
+"-----Удалить две зведочки перед или после косой одинарной кавычки------"
+"--------------------Нормализовать заголовок в Obsidian-----------------"
+
+command! DelBold call DelBold()
+
+function! DelBold()
+  %s/\v`(.{-})`/\='`' . substitute(submatch(1), '\*\*', '', 'g') . '`'/ge
+  %s/\v\s+\n\s+(\*\*Структура и наполнение таблиц.{-}\*\*)/\*\*\*\r\#\#\#\#\# \1/e
+  %s/\v\s*\n\s*(\*\*Наполнение таблиц.{-}\*\*)\s*/\*\*\*\r\#\#\#\#\# \1\r/e
+endfunction
+
+
+"--Преобразовать таблицу Markdown в SQL--"
+command! -range MakeTableSql call MakeTableSql(<line1>, <line2>)
+
+function! MakeTableSql(line1, line2)
+  let @a = "0vt|xw"
+  for lnum in range(a:line1, a:line2)
+    execute lnum . 's/\v(^\s*)@<!\|(\s*$)@!/ | /ge'
+    execute lnum . 'normal @a'
+    execute lnum . 's/\v\|\zs\s*(.{-})\s*\ze\|/''\1''/g'
+    execute lnum . 's/\v''(\d+|\d+\.\d+)''/\1/ge'
+    execute lnum . 's/\v^\|\s*/(/e'
+    execute lnum . 's/\v\s*\|\s*$/),/e'
+    execute lnum . 's/\v\s*\|\s*/, /ge'
+  endfor
+  execute a:line2 . 's/\v,\s*$/;/e'
+endfunction
