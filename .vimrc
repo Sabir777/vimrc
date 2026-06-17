@@ -121,6 +121,7 @@ nnoremap <leader>a ggVG
 " Копировать выделенный фрагмент в глобальный буфер обмена: Ctrl + c
 function! CopyClipboardGlobalVisual()
   normal gv"+y
+endfunction
 
 vnoremap <C-c> :<C-u>call CopyClipboardGlobalVisual()<CR>
 
