@@ -1,6 +1,11 @@
 " Отключение обратной совместимости с vi
 set nocompatible
 
+" Отключить звук при ошибках
+set visualbell
+" Убрать мигание вместо звука
+set t_vb=
+
 " для работы плагинов NERDTree, NERDCommenter, lightline - если я их установлю
 " вручную
 filetype plugin indent on
