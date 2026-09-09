@@ -399,10 +399,15 @@ nnoremap <F2> :ToggleQuickfix<CR>
 " nnoremap <leader>к :source save.ses<CR>
 
 "--------------------------Автодополнение----------------------------"
-" включить меню автодополнения, выбрать следующее слово
-inoremap <C-j> <C-n>
 
-" включить меню автодополнения, выбрать предыдущее слово
+" Tab - следующее совпадение в меню автодополнения
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" Shift-Tab - предыдущее совпадение
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Ctrl-j / Ctrl-k - оставить альтернативное управление
+inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 
 
