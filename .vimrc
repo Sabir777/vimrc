@@ -13,6 +13,12 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
+
+" LSP
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
 
 
@@ -418,6 +424,26 @@ nnoremap <leader>m mm
 
 " Перейти к метке m
 nnoremap <leader>, ``
+
+
+"----------LSP: Маппинги---------"
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+endfunction
+
+
+" Подключение LSP к буферам
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 
 "---------------------Пользовательские команды--------------------------"
