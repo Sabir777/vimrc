@@ -450,6 +450,61 @@ augroup lsp_install
 augroup END
 
 
+"----------LSP: Включить/отключить автодополнение из LSP (<leader>e)---------"
+" b:asyncomplete_enable - официальная переменная буфера, которой сам
+" asyncomplete.vim проверяет, работать ли автодополнению в текущем буфере.
+" Диагностика, gd, K, gr при этом продолжают работать как обычно -
+" отключается только появление вариантов в списке автодополнения.
+
+" Переменная для хранения текущего состояния (1 - автодополнение работает, 0 - нет)
+let g:asyncomplete_toggle_state = 1
+
+command! ToggleAsyncComplete call ToggleAsyncComplete()
+
+function! ToggleAsyncComplete()
+  if g:asyncomplete_toggle_state
+    let b:asyncomplete_enable = 0
+    let g:asyncomplete_toggle_state = 0
+    echom "LSP-автодополнение выключено"
+  else
+    let b:asyncomplete_enable = 1
+    let g:asyncomplete_toggle_state = 1
+    echom "LSP-автодополнение включено"
+  endif
+endfunction
+
+nnoremap <leader>e :ToggleAsyncComplete<CR>
+" тоже самое: русская раскладка
+nnoremap бу :ToggleAsyncComplete<CR>
+
+
+"----------LSP: Включить/отключить полностью (<leader>r)---------"
+" lsp#enable() / lsp#disable() - встроенные функции vim-lsp,
+" включают и выключают плагин полностью (все сервера, диагностику,
+" автодополнение через LSP) без перезапуска Vim.
+
+" Переменная для хранения текущего состояния (1 - включен, 0 - выключен)
+let g:lsp_toggle_state = 1
+
+command! ToggleLsp call ToggleLsp()
+
+function! ToggleLsp()
+  if g:lsp_toggle_state
+    call lsp#disable()
+    let g:lsp_toggle_state = 0
+    echom "LSP выключен"
+  else
+    call lsp#enable()
+    let g:lsp_toggle_state = 1
+    echom "LSP включен"
+  endif
+endfunction
+
+nnoremap <leader>r :ToggleLsp<CR>
+" тоже самое: русская раскладка
+nnoremap бк :ToggleLsp<CR>
+
+
 "---------------------Пользовательские команды--------------------------"
 "
 "-----Удалить две зведочки перед или после косой одинарной кавычки------"
