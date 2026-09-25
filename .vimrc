@@ -239,6 +239,11 @@ nnoremap бш :bprev<CR>
 nnoremap <leader>o :bnext<CR>
 nnoremap бщ :bnext<CR>
 
+" Меняю местами: Ctrl-i - назад по jumplist, Ctrl-o - вперед
+" (так же как <leader>i/<leader>o для буферов, и как в tmux: i слева = назад)
+nnoremap <C-i> <C-o>
+nnoremap <C-o> <C-i>
+
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
 nnoremap <F11> :tnext<CR>
