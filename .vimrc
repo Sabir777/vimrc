@@ -244,6 +244,11 @@ nnoremap бщ :bnext<CR>
 nnoremap <C-i> <C-o>
 nnoremap <C-o> <C-i>
 
+"---------------------Метка с добавлением в jumplist------------------"
+" mm - ставит метку 'm' И одновременно добавляет текущую позицию в jumplist,
+" так что она становится доступна через Ctrl-o / Ctrl-i
+nnoremap mm mm`m
+
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
 nnoremap <F11> :tnext<CR>
