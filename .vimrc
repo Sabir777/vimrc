@@ -249,6 +249,29 @@ nnoremap <C-o> <C-i>
 " так что она становится доступна через Ctrl-o / Ctrl-i
 nnoremap mm mm`m
 
+"-------------------------Создание меток 1-9-------------------------"
+nnoremap m1 m1`1
+nnoremap m2 m2`2
+nnoremap m3 m3`3
+nnoremap m4 m4`4
+nnoremap m5 m5`5
+nnoremap m6 m6`6
+nnoremap m7 m7`7
+nnoremap m8 m8`8
+nnoremap m9 m9`9
+
+"-------------------Быстрый переход к меткам 1-9---------------------"
+nnoremap <leader>1 `1zz
+nnoremap <leader>2 `2zz
+nnoremap <leader>3 `3zz
+nnoremap <leader>4 `4zz
+nnoremap <leader>5 `5zz
+nnoremap <leader>6 `6zz
+nnoremap <leader>7 `7zz
+nnoremap <leader>8 `8zz
+nnoremap <leader>9 `9zz
+
+
 " Навигация по тэгам
 nnoremap <F10> :tprev<CR>
 nnoremap <F11> :tnext<CR>
