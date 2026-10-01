@@ -569,6 +569,10 @@ nnoremap <leader>r :ToggleLsp<CR>
 nnoremap бк :ToggleLsp<CR>
 
 
+"--------------Отформатировать файл с помощью внешнего ruff-------------"
+nnoremap <leader>f :update<CR>:silent !ruff format %<CR>:checktime<CR>:redraw!<CR>
+
+
 "---------------------Пользовательские команды--------------------------"
 "
 "-----Удалить две зведочки перед или после косой одинарной кавычки------"
