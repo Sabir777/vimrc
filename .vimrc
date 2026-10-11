@@ -24,6 +24,9 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+" Дебаггер для Python
+Plug 'puremourning/vimspector'
 call plug#end()
  
 " Мап-лидер
@@ -232,8 +235,8 @@ command! Swap call DeleteSwapFiles()
 set number
 
 " Навигация по вкладкам
-nnoremap <F7> :tabp<CR>
-nnoremap <F8> :tabn<CR>
+nnoremap <leader>ii :tabp<CR>
+nnoremap <leader>oo :tabn<CR>
 
 " Навигация по буферам
 nnoremap <leader>i :bprev<CR>
@@ -276,11 +279,11 @@ nnoremap <leader>9 `9zz
 
 
 " Навигация по тэгам
-nnoremap <F10> :tprev<CR>
-nnoremap <F11> :tnext<CR>
+" nnoremap <F10> :tprev<CR>
+" nnoremap <F11> :tnext<CR>
 
 " Переход к первому определению слова(тэга). Дальнейшее перемещение: F5,F6
-nnoremap <F12> g<C-]>1<CR><CR>
+" nnoremap <F12> g<C-]>1<CR><CR>
 
 "-----------------------------Поиск---------------------------------"
 " умный поиск. Если вы ищете строку, которая состоит только из прописных букв,
@@ -395,10 +398,10 @@ nnoremap <leader>й :q<CR>
 
 "----------------------------Quickfix list---------------------------"
 " переход к предыдущей записи
-nnoremap <F3> :cprev<CR> 
+" nnoremap <F3> :cprev<CR>
 
 " переход к следующей записи
-nnoremap <F4> :cnext<CR>
+" nnoremap <F4> :cnext<CR>
 
 
 "----------------Quickfix list: открыть, закрыть---------------------"
@@ -456,7 +459,7 @@ menu Encoding.koi8-r :e ++enc=koi8-r<CR>
 menu Encoding.windows-1251 :e ++enc=cp1251<CR>
 menu Encoding.ibm-866 :e ++enc=cp866<CR>
 menu Encoding.utf-8 :e ++enc=utf-8<CR>
-map <F9> :emenu Encoding.<TAB>
+map <F7> :emenu Encoding.<TAB>
 
 " Выбор кодировки, в которой сохранять файл
 set wildmenu
@@ -465,7 +468,7 @@ menu Encoding.Write.koi8-r :set fenc=koi8-r<CR>
 menu Encoding.Write.windows-1251 :set fenc=cp1251<CR>
 menu Encoding.Write.cp866 :set fenc=cp866<CR>
 menu Encoding.Write.utf-8 :set fenc=utf8<CR>
-map <leader><F9> :emenu Encoding.Write.<TAB>
+map <leader><F7> :emenu Encoding.Write.<TAB>
 
 
 "---------------------------Аббревиатуры----------------------------"
@@ -574,6 +577,14 @@ nnoremap бк :ToggleLsp<CR>
 
 "--------------Отформатировать файл с помощью внешнего ruff-------------"
 nnoremap <leader>f :update<CR>:silent !ruff format %<CR>:checktime<CR>:redraw!<CR>
+
+
+"--------------------------Дебаггер для Python--------------------------"
+let g:vimspector_enable_mappings = 'HUMAN'
+
+" Закрыть вкладку с дебаггером
+nnoremap <leader><F3> :VimspectorReset<CR>
+
 
 
 "---------------------Пользовательские команды--------------------------"
