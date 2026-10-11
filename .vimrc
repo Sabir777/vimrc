@@ -552,6 +552,21 @@ let g:vimspector_enable_mappings = 'HUMAN'
 " Закрыть вкладку с дебаггером
 nnoremap <leader><F3> :VimspectorReset<CR>
 
+" Автозакрытие ненужных окон в termux@vim
+function! s:CustomiseVimspectorUI() abort
+  for l:name in ['watches', 'stack_trace']
+    if has_key(g:vimspector_session_windows, l:name)
+      call win_gotoid(g:vimspector_session_windows[l:name])
+      close
+    endif
+  endfor
+  call win_gotoid(g:vimspector_session_windows.code)
+endfunction
+
+augroup vimspector_ui
+  autocmd!
+  autocmd User VimspectorUICreated call s:CustomiseVimspectorUI()
+augroup END
 
 
 "---------------------Пользовательские команды--------------------------"
